@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue!</title>
+    <style type="text/css" src="hello.css"></style>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+    </div>
+    <div id="app-2">
+        <span v-bind:title="message">
+			La souris sur moi sans bouger!
+		</span>
+    </div>
+    <div id="app-3">
+        <!-- si seen est à true on affiche now you see me
+        si elle est à false, on affiche rien
+        on applique réactivement des effets secondaires au DOM -->
+            <span v-if="seen">Now you see me ! </span>
+        
+    </div>
+    <div id="app-4">
+        <ol v-for="todo in todos">
+            <li>{{todo.text}}</li>
+        </ol>
+    </div>
+    <!-- user input
+    On va ici changer l'ordre du message 5  grace à la fonction
+    reverseMessage, tous deux definis dans le script var app5 -->
+    <div id="app-5">
+        <p>{{message}}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+    <!--two way binding avec v-model le message tapé par l'utilisateur
+    s'affichera au dessus ( on a quand même définit un message de base dans le script-->
+    <div id="app-6">
+        <p>{{message}}</p>
+        <input v-model="message">
+    </div>
+    <!--   <div>
+        <ol>
+            Crée une instance du composant todo-list
+            <todo-item> </todo-item>
+        </ol>
+    </div>-->
+    <div id="app-7">
+        <ol>
+            <!--
+      Maintenant nous fournissons à chaque todo-item l'objet todo
+      qu'il représente de manière à ce que son contenu puisse être dynamique.
+      Nous avons également besoin de fournir à chaque composant une « clé »
+    -->
+            <todo-item 
+            v-for="item in groceryList" 
+            v-bind:todo="item" 
+            v-bind:key="item.id">
+            </todo-item>
+        </ol>
+    </div>
+</body>
+<!-- Bien penser à mettre les scripts en dessous du body pour que cela fonctionne-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="scriptHello.js"></script>
+
+</html>
